@@ -1,0 +1,65 @@
+﻿{
+  "traducciones": [
+    {
+      "texto": "Lista vacía de formas!",
+      "es": "Lista vacía de formas!",
+      "en": "Empty list of shapes!",
+      "pt": "Lista vazia de formas!"
+    },
+    {
+      "texto": "Reporte de Formas",
+      "es": "Reporte de Formas",
+      "en": "Shapes report",
+      "pt": "Relatório de Formulários"
+    },
+    {
+      "texto": "Area",
+      "es": "Área",
+      "en": "Area",
+      "pt": "Área"
+    },
+    {
+      "texto": "Perimetro",
+      "es": "Perímetro",
+      "en": "Perimeter",
+      "pt": "Perímetro"
+    },
+    {
+      "texto": "total",
+      "es": "total",
+      "en": "total",
+      "pt": "total"
+    },
+    {
+      "texto": "Cuadrado",
+      "es": "Cuadrado",
+      "en": "Share",
+      "pt": "Quadrado"
+    },
+    {
+      "texto": "Circulo",
+      "es": "Círculo",
+      "en": "Circle",
+      "pt": "Círculo"
+    },
+    {
+      "texto": "Triangulo",
+      "es": "Triángulo",
+      "en": "Triangle",
+      "pt": "Triângulo"
+    },
+    {
+      "texto": "Rectangulo",
+      "es": "Rectángulo",
+      "en": "Rectangle",
+      "pt": "Retângulo"
+    },
+    {
+      "texto": "Trapecio",
+      "es": "Trapecio",
+      "en": "Trapeze",
+      "pt": "Trapézio"
+    }
+
+  ]
+}
