@@ -5,9 +5,9 @@ using System;
 namespace CodingChallenge.Data.Test
 {
     [TestFixture, Order(1)]
-    public class TestFormas
+    public class FormasTest
     {
-        [Test]
+        [TestCase]
         public void TestCuadrado()
         {
             var cuadrado = new Cuadrado(2m);
@@ -17,7 +17,7 @@ namespace CodingChallenge.Data.Test
             Assert.AreEqual(8, decimal.Round(cuadrado.GetPerimetro(), 2));
         }
 
-        [Test]
+        [TestCase]
         public void TestCirculo()
         {
             Circulo circulo = new Circulo(2m);
@@ -27,7 +27,7 @@ namespace CodingChallenge.Data.Test
             Assert.AreEqual(12.57m, decimal.Round(circulo.GetPerimetro(), 2));
         }
 
-        [Test]
+        [TestCase]
         public void TestRectangulo()
         {
             var rectangulo = new Rectangulo(2m,2m);
@@ -37,7 +37,7 @@ namespace CodingChallenge.Data.Test
             Assert.AreEqual(8, decimal.Round(rectangulo.GetPerimetro(), 2));
         }
 
-        [Test]
+        [TestCase]
         public void TestTriangulo()
         {
             var triangulo = new Triangulo(2m);
@@ -47,7 +47,7 @@ namespace CodingChallenge.Data.Test
             Assert.AreEqual(6m, decimal.Round(triangulo.GetPerimetro(), 2));
         }
 
-        [Test]
+        [TestCase]
         public void TestTrapecio()
         {
             Trapecio trapecio = new Trapecio(2m, 4m, 5m, 2m);
@@ -55,6 +55,25 @@ namespace CodingChallenge.Data.Test
             Assert.IsNotNull(trapecio);
             Assert.AreEqual(20, decimal.Round(trapecio.GetArea(), 2));
             Assert.AreEqual(10, decimal.Round(trapecio.GetPerimetro(), 2));
+        }
+
+        [TestCase]
+        public void TestCreacionTrapecioConException()
+        {
+            decimal baseMenor = 2m;
+            decimal baseMayor = 4m;
+            bool trapecioInvalido = false;
+
+            try
+            {
+                Trapecio trapecio = new Trapecio(baseMayor, baseMenor, 5m, 2m);
+            }
+            catch (Exception ex)
+            {
+                trapecioInvalido = true;
+            }
+
+            Assert.IsTrue(trapecioInvalido);
         }
     }
 }

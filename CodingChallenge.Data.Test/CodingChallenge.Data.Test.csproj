@@ -53,11 +53,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\TestFormas.cs" />
+    <Compile Include="Entities\FormasTest.cs" />
     <Compile Include="Reporter\GeneradorDataReporteFormaGeometricaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reporter\ImpresoraAppTest.cs" />
-    <Compile Include="Reporter\ImpresoraDataReporteFormaGeometricaTest.cs" />
     <Compile Include="Traduccion\TraductorTest.cs" />
   </ItemGroup>
   <ItemGroup>

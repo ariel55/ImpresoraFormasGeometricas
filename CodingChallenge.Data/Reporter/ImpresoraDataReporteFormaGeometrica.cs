@@ -9,7 +9,7 @@ namespace CodingChallenge.Data.Reporter
     {
         public static string imprimir ( DataReporteFormaGeometrica data ) 
         {
-            if ( !data.Data.Any() )
+            if ( data == null || !data.Data.Any() )
             {
                 return "";
             }
@@ -33,7 +33,7 @@ namespace CodingChallenge.Data.Reporter
         {
             return string.Format(esDataTotalizada ? "{0} {1} {4} {5} {2} {3}" : "{0} {1} | {2} {3} | {4} {5} <br/>",
                              filaReporte.cantidad,
-                             filaReporte.cantidad > 1 ? Traductor.Instance.Get(filaReporte.nombre + "s") : Traductor.Instance.Get(filaReporte.nombre),
+                             filaReporte.cantidad > 1 ? Traductor.Instance.Get(filaReporte.nombre) + "s" : Traductor.Instance.Get(filaReporte.nombre),
                              Traductor.Instance.Get("Area"),
                              filaReporte.areaTotal.ToString("#.##"),
                              Traductor.Instance.Get("Perimetro"),

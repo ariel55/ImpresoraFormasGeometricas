@@ -63,6 +63,7 @@
     <Compile Include="Reporter\ImpresoraApp.cs" />
     <Compile Include="Reporter\ImpresoraDataReporteFormaGeometrica.cs" />
     <Compile Include="Exception\ExceptionIdiomaNoValido.cs" />
+    <Compile Include="Traduccion\TraductorManager.cs" />
     <Compile Include="Utilities\BooleanResponse.cs" />
     <Compile Include="Traduccion\Traductor.cs" />
     <Compile Include="Entities\Traduccion\Traduccion.cs" />

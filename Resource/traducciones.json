@@ -1,61 +1,67 @@
 ﻿{
   "traducciones": [
     {
-      "texto": "Lista vacía de formas!",
+      "clave": "Lista vacía de formas!",
       "es": "Lista vacía de formas!",
       "en": "Empty list of shapes!",
       "pt": "Lista vazia de formas!"
     },
     {
-      "texto": "Reporte de Formas",
+      "clave": "Reporte de Formas",
       "es": "Reporte de Formas",
       "en": "Shapes report",
       "pt": "Relatório de Formulários"
     },
     {
-      "texto": "Area",
+      "clave": "Area",
       "es": "Área",
       "en": "Area",
       "pt": "Área"
     },
     {
-      "texto": "Perimetro",
+      "clave": "Perimetro",
       "es": "Perímetro",
       "en": "Perimeter",
       "pt": "Perímetro"
     },
     {
-      "texto": "total",
+      "clave": "total",
       "es": "total",
       "en": "total",
       "pt": "total"
     },
     {
-      "texto": "Cuadrado",
+      "clave": "Forma",
+      "es": "Forma",
+      "en": "Shape",
+      "pt": "Forma"
+    },
+    {
+      "clave": "Cuadrado",
       "es": "Cuadrado",
       "en": "Share",
       "pt": "Quadrado"
     },
     {
-      "texto": "Circulo",
+      "clave": "Circulo",
       "es": "Círculo",
       "en": "Circle",
       "pt": "Círculo"
     },
     {
-      "texto": "Triangulo",
+      "clave": "Triangulo",
       "es": "Triángulo",
       "en": "Triangle",
       "pt": "Triângulo"
     },
     {
-      "texto": "Rectangulo",
+      "clave": "Rectangulo",
       "es": "Rectángulo",
       "en": "Rectangle",
       "pt": "Retângulo"
     },
     {
-      "texto": "Trapecio",
+      "clave": "Trapecio",
       "es": "Trapecio",
       "en": "Trapeze",
       "pt": "Trapézio"

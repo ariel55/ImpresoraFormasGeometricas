@@ -1,11 +1,9 @@
-﻿using CodingChallenge.Data.Traduccion;
-using CodingChallenge.Data.Utilities;
+﻿using CodingChallenge.Data.Utilities;
 using System;
 using System.Collections.Generic;
 
 namespace CodingChallenge.Data.Traduccion
 {
-
     public sealed class Traductor
     {
         private Dictionary<string, string> traducciones;
@@ -28,6 +26,17 @@ namespace CodingChallenge.Data.Traduccion
 
         public BooleanResponse<string> cargarTraducciones(int idioma)
         {
+
+            if ( !Util.existeRutaFisicaDeTraducciones() )
+            {
+                return new BooleanResponse<string>
+                {
+                    hasError = true,
+                    Message = "no existe " + Util.getRutaFisicaDeTraducciones(),
+                    Data = null
+                };
+            }
+
             string codIdioma = string.Empty;
 
             switch (idioma)
@@ -54,7 +63,7 @@ namespace CodingChallenge.Data.Traduccion
                 };
             }
 
-            var booleanResponse = Util.leerTraduccionesDesdeJson(Util.TryGetSolutionDirectoryInfo().FullName + "/Resource/traducciones.json", codIdioma);
+            var booleanResponse = TraductorManager.cargarTraduccionesDesdeJson(Util.getRutaFisicaDeTraducciones(), codIdioma);
 
             if (booleanResponse.hasError)
             {
@@ -89,7 +98,8 @@ namespace CodingChallenge.Data.Traduccion
             }
             else
             {
-                return clave;
+                //TODO agregar en traducciones.json ...
+                return "[Sin Traduccion]";
             }
         }
 

@@ -5,6 +5,7 @@ namespace CodingChallenge.Data.Traduccion
     {
         Castellano = 1,
         Ingles = 2,
-        Portugues = 3
+        Portugues = 3,
+        Indefnido = -1
     }
 }

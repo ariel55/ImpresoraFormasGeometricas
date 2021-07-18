@@ -20,7 +20,7 @@ namespace CodingChallenge.Data.Reporter
             {
                 Traductor.Instance.cargarTraducciones(idioma);
 
-                if (!formas.Any())
+                if ( formas == null || !formas.Any())
                 {
                     return string.Format("<h1>{0}</h1>", Traductor.Instance.Get("Lista vacía de formas!"));
                 }

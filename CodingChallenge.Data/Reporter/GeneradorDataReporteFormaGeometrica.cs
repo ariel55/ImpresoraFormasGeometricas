@@ -8,7 +8,7 @@ namespace CodingChallenge.Data.Reporter
     {
         public static DataReporteFormaGeometrica generarData(List<FormaGeometrica> formas)
         {
-            if (!formas.Any())
+            if ( formas == null || !formas.Any())
             {
                 return new DataReporteFormaGeometrica();
             }

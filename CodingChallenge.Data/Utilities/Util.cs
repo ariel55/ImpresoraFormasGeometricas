@@ -1,75 +1,21 @@
-﻿using CodingChallenge.Data.Entities;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace CodingChallenge.Data.Utilities
 {
     public static class Util
     {
-        public static BooleanResponse<Dictionary<string, string>> leerTraduccionesDesdeJson(string filename, string idioma)
+        private const string FILENAME_TRADUCCIONES = "traducciones.json";
+
+        public static string getRutaFisicaDeTraducciones()
         {
-            // TODO cargarlo desde db o json
-
-            Dictionary<string, string> traducciones = new Dictionary<string, string>();
-
-            var myJsonString = File.ReadAllText(filename);
-            var myJObject = JObject.Parse(myJsonString);
-
-            var traduccionesResult = JsonConvert.DeserializeObject<Traducciones>(myJObject.ToString());
-
-            var br = new BooleanResponse<Dictionary<string, string>>();
-
-            try
-            {
-                foreach (Entities.Traduccion unaTraduccion in traduccionesResult.traducciones)
-                {
-                    Type magicType = typeof(Entities.Traduccion);
-
-                    MethodInfo magicMethod = magicType.GetMethod("get_" + idioma);
-
-                    if (magicMethod == null)
-                    {
-                        throw new ExceptionIdiomaNoValido(string.Format("Idioma {0} no valido", idioma));
-                    }
-
-                    string texto_idioma = magicMethod.Invoke(unaTraduccion, null).ToString();
-
-                    traducciones.Add(unaTraduccion.texto, texto_idioma);
-                }
-
-            }
-            catch (ExceptionIdiomaNoValido ex1)
-            {
-                br.hasError = true;
-                br.Message = ex1.Message;
-            }
-            catch (Exception ex)
-            {
-                br.hasError = true;
-                br.Message = ex.Message;
-            }
-            finally
-            {
-                br.Data = traducciones;
-            }
-
-            return br;
+            return Util.TryGetSolutionDirectoryInfo().FullName + "/Resource/" + FILENAME_TRADUCCIONES;
         }
 
-        public static void imprimirDicccionario(Dictionary<string, string> traducciones)
+        public static bool existeRutaFisicaDeTraducciones()
         {
-            foreach (KeyValuePair<string, string> entry in traducciones)
-            {
-                Console.WriteLine(entry.Key + " | " + entry.Value);
-            }
-
+            return File.Exists ( getRutaFisicaDeTraducciones() );
         }
-
 
         /// <summary>
         /// Getting path to the parent folder of the solution file

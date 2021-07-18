@@ -10,14 +10,21 @@ namespace CodingChallenge.Data.Test
     public class GeneradorDataReporteFormaGeometricaTest
     {
         [TestCase]
-        public void TestDataReporteVacio()
+        public void TestListaDeFormasNull()
+        {
+            //Assert
+            Assert.IsEmpty(GeneradorDataReporteFormaGeometrica.generarData(null).Data);
+        }
+
+        [TestCase]
+        public void TestGeneradoDataReporteVacio()
         {
             //Assert
             Assert.IsEmpty(GeneradorDataReporteFormaGeometrica.generarData(new List<FormaGeometrica>()).Data);
         }
 
         [TestCase]
-        public void TestDataReporteNoVacio()
+        public void TestGeneradorDataReporteNoVacio()
         {
             //Arrange
             Cuadrado cuadrado = new Cuadrado(lado: 1);
@@ -33,43 +40,95 @@ namespace CodingChallenge.Data.Test
         }
 
         [TestCase]
-        public void TestDataReporteNoVacio_version2()
+        public void TestDataReporteConUnCuadrado()
         {
             //Arrange
-            Cuadrado    forma_1    = new Cuadrado(10);
-            Circulo     forma_2 = new Circulo(5);
-            Rectangulo  forma_3 = new Rectangulo(18, 5);
-            Triangulo   forma_4 = new Triangulo(12);
-            Trapecio    forma_5 = new Trapecio(2, 4, 5, 2);
+            Cuadrado cuadrado = new Cuadrado(2);
+            Cuadrado otroCuadrado = new Cuadrado(2);
+            Rectangulo rectangulo = new Rectangulo(1, 1);
+            Triangulo triangulo = new Triangulo(12);
 
-            List<FormaGeometrica> listaDeFormas = new List<FormaGeometrica>();
-            listaDeFormas.Add(forma_1);
-            listaDeFormas.Add(forma_2);
-            listaDeFormas.Add(forma_3);
-            listaDeFormas.Add(forma_4);
-            listaDeFormas.Add(forma_5);
+            var formas = new List<FormaGeometrica>();
+            formas.Add(cuadrado);
+            formas.Add(otroCuadrado);
+            formas.Add(rectangulo);
+            formas.Add(triangulo);
 
             //Act
-            var cuadradoReporte = GeneradorDataReporteFormaGeometrica.generarData(listaDeFormas).Data;
+            var dataReporte = GeneradorDataReporteFormaGeometrica.generarData(formas);
 
-            //Assert
-            Assert.AreEqual(5, cuadradoReporte.Count());
+            var cantidadDeCuadrados = dataReporte.Data.Where(r => r.nombre == "Cuadrado").Select(c => c.cantidad).ToList().FirstOrDefault();
+            var areaTotalCuadrados = dataReporte.Data.Where(r => r.nombre == "Cuadrado").Sum(a => a.areaTotal);
+            var perimetroTotalCuadrados = dataReporte.Data.Where(r => r.nombre == "Cuadrado").Sum(a => a.perimetroTotal);
+
+            Assert.AreEqual(2, cantidadDeCuadrados);
+            Assert.AreEqual(8, areaTotalCuadrados);
+            Assert.AreEqual(16, perimetroTotalCuadrados);
         }
 
         [TestCase]
-        public void TestDataReporteUnCuadrado()
+        public void TestDataReporteTotalizadaConUnCuadrado()
         {
             //Arrange
-            Cuadrado cuadrado = new Cuadrado(lado: 1);
-
-            var listaDeFormas = new List<FormaGeometrica>();
-            listaDeFormas.Add(cuadrado);
+            Cuadrado cuadrado = new Cuadrado(2);
+            var formas = new List<FormaGeometrica>();
+            formas.Add(cuadrado);
 
             //Act
-            var cuadradoReporte = GeneradorDataReporteFormaGeometrica.generarData(listaDeFormas);
+            var dataReporte = GeneradorDataReporteFormaGeometrica.generarData(formas);
 
-            //Assert
-            Assert.AreEqual(1, cuadradoReporte.Data.Count());
+            Assert.AreEqual("Forma", dataReporte.DataTotalizada.nombre);
+            Assert.AreEqual(1, dataReporte.DataTotalizada.cantidad);
+            Assert.AreEqual(4, dataReporte.DataTotalizada.areaTotal);
+            Assert.AreEqual(8, dataReporte.DataTotalizada.perimetroTotal);
+        }
+
+        [TestCase]
+        public void TestDataReporteTotalizadaConMasCuadrados()
+        {
+            Cuadrado cuadrado = new Cuadrado(1);
+            Cuadrado segundoCuadrado = new Cuadrado(2);
+            Cuadrado tercerCuadrado = new Cuadrado(15);
+            Cuadrado cuartoCuadrado = new Cuadrado(1);
+
+            var formas = new List<FormaGeometrica>();
+            formas.Add(cuadrado);
+            formas.Add(segundoCuadrado);
+            formas.Add(tercerCuadrado);
+            formas.Add(cuartoCuadrado);
+
+            //Act
+            var dataReporte = GeneradorDataReporteFormaGeometrica.generarData(formas);
+
+            Assert.AreEqual("Forma", dataReporte.DataTotalizada.nombre);
+            Assert.AreEqual(4, dataReporte.DataTotalizada.cantidad);
+            Assert.AreEqual(231, dataReporte.DataTotalizada.areaTotal);
+            Assert.AreEqual(76, dataReporte.DataTotalizada.perimetroTotal);
+        }
+
+        [TestCase]
+        public void TestDataReporteTotalizadaConMasFormas()
+        {
+            //Arrange
+            Cuadrado cuadrado = new Cuadrado(17);
+            Circulo circulo = new Circulo(5);
+            Rectangulo rectangulo = new Rectangulo(1, 1);
+            Triangulo triangulo = new Triangulo(12);
+            Trapecio trapecio = new Trapecio(1, 2, 5, 2);
+
+            var formas = new List<FormaGeometrica>();
+            formas.Add(cuadrado);
+            formas.Add(circulo);
+            formas.Add(rectangulo);
+            formas.Add(triangulo);
+            formas.Add(trapecio);
+
+            var dataReporte = GeneradorDataReporteFormaGeometrica.generarData(formas);
+
+            Assert.AreEqual("Forma", dataReporte.DataTotalizada.nombre);
+            Assert.AreEqual(5, dataReporte.DataTotalizada.cantidad);
+            Assert.AreEqual("435,89", dataReporte.DataTotalizada.areaTotal.ToString("#.##"));
+            Assert.AreEqual("146,42", dataReporte.DataTotalizada.perimetroTotal.ToString("#.##"));
         }
 
     }
